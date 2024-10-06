@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Hub</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Filmes</h1>
+<a href="/filmes/adicionar">Adicionar Filme</a>
+<table>
+    <thead>
+    <tr>
+        <th>Título</th>
+        <th>Gênero</th>
+        <th>Diretor</th>
+        <th>Data de Lançamento</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="filme : ${filmes}">
+        <td th:text="${filme.titulo}"></td>
+        <td th:text="${filme.genero}"></td>
+        <td th:text="${filme.diretor}"></td>
+        <td th:text="${filme.dataLancamento}"></td>
+        <td>
+            <a th:href="@{/filmes/{id}(id=${filme.id})}">Ver</a>
+            <a th:href="@{/filmes/editar/{id}(id=${filme.id})}">Editar</a>
+            <a th:href="@{/filmes/deletar/{id}(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja deletar?');">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Filme</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Editar Filme</h1>
+<form th:action="@{/filmes/editar/{id}(id=${filme.id})}" method="post">
+    <input type="hidden" name="_method" value="PUT" />
+    <label>Título:</label>
+    <input type="text" name="titulo" th:value="${filme.titulo}" required />
+    <label>Gênero:</label>
+    <input type="text" name="genero" th:value="${filme.genero}" required />
+    <label>Diretor:</label>
+    <input type="text" name="diretor" th:value="${filme.diretor}" required />
+    <label>Descrição:</label>
+    <textarea name="descricao" required th:text="${filme.descricao}"></textarea>
+    <label>Data de Lançamento:</label>
+    <input type="date" name="dataLancamento" th:value="${filme.dataLancamento}" required />
+    <label>Imagem URL:</label>
+    <input type="url" name="imagemUrl" th:value="${filme.imagemUrl}" />
+    <button type="submit">Atualizar</button>
+</form>
+<a href="/filmes">Voltar</a>
+</body>
+</html>
