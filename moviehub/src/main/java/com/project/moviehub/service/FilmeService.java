@@ -17,13 +17,12 @@ public class FilmeService {
         return filmeRepository.findAll();
     }
 
-    public Filme salvar(Filme filme) {
-        return filmeRepository.save(filme);
-    }
-
-
     public Filme buscarPorId(Long id) {
         return filmeRepository.findById(id).orElse(null);
+    }
+
+    public Filme salvar(Filme filme) {
+        return filmeRepository.save(filme);
     }
 
     public void deletar(Long id) {

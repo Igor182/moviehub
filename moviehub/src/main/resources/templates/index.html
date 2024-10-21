@@ -1,66 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Hub</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            margin-top: 20px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #343a40;
-            margin-bottom: 20px;
-        }
-        .film-list {
-            margin-top: 20px;
-        }
-        .film-item {
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>MovieHub</title>
+    <link rel="stylesheet" href="/css.css">
 </head>
 <body>
-
-<div class="container">
-    <h1>Movie Hub</h1>
-
-    <!-- Campo de Pesquisa -->
-    <div class="form-group">
-        <label for="search">Pesquisar Filme:</label>
-        <input type="text" class="form-control" id="search" placeholder="Digite o título do filme...">
+<header>
+    <h1>MovieHub</h1>
+    <div class="search-container">
+        <input type="text" id="searchId" placeholder="Buscar Filme">
+        <button onclick="searchMovie()">Buscar</button>
     </div>
 
-    <div>
-        <h2>Filmes Cadastrados</h2>
-        <div class="film-list" th:each="filme : ${filmes}">
-            <div class="film-item">
-                <strong>Título:</strong> <span th:text="${filme.titulo}"></span><br/>
-                <strong>Gênero:</strong> <span th:text="${filme.genero}"></span><br/>
-                <strong>Diretor:</strong> <span th:text="${filme.diretor}"></span><br/>
-                <strong>Descrição:</strong> <span th:text="${filme.descricao}"></span><br/>
-                <strong>Data de Lançamento:</strong> <span th:text="${filme.dataLancamento}"></span><br/>
-                <strong>Imagem:</strong> <span th:text="${filme.imagemUrl}"></span><br/>
+    <div class="add-movie-container">
+        <a href="/filmes/adicionar"><button>Adicionar Filme</button></a>
+    </div>
+
+
+</header>
+
+<section id="movieList">
+    <h2>Filmes</h2>
+    <ul>
+        <li th:each="filme : ${filmes}" class="movie-item">
+            <img th:src="${filme.imagemUrl}" alt="Poster do Filme" class="movie-poster">
+            <div class="movie-details">
+                <h3 th:text="${filme.titulo}"></h3>
+                <p>Diretor: <span th:text="${filme.diretor}"></span></p>
+                <p>Gênero: <span th:text="${filme.genero}"></span></p>
+                <p>Descrição: <span th:text="${filme.descricao}"></span></p>
+                <p>Lançamento: <span th:text="${filme.dataLancamento}"></span></p>
             </div>
-        </div>
-    </div>
-</div>
+        </li>
+    </ul>
+</section>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<footer>
+    <p>© 2024 MovieHub. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    function searchMovie() {
+        const movieId = document.getElementById('searchId').value;
+        window.location.href = '/api/filmes/' + movieId; // Redireciona para o endpoint de busca
+    }
+</script>
 </body>
 </html>

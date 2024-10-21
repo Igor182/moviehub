@@ -1,26 +1,154 @@
+/* CSS atualizado com ajustes para a caixa de pesquisa e botão de busca */
+
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
-    color: #333;
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.search-container {
+    margin: 20px auto; /* Centraliza a caixa de pesquisa */
+    display: flex;
+    justify-content: center;
 }
 
-table, th, td {
-    border: 1px solid black;
-}
-
-th, td {
+.search-container input {
+    width: 300px;
     padding: 10px;
-    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Bordas arredondadas para a caixa de pesquisa */
+    font-size: 16px;
 }
 
-a {
-    margin: 0 10px;
+.search-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0; /* Bordas arredondadas para o botão */
+    cursor: pointer;
+    font-size: 16px;
 }
+
+.search-container button:hover {
+    background-color: #0056b3;
+}
+
+.add-movie-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.add-movie-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-movie-container button:hover {
+    background-color: #0056b3;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 50px auto; /* Centraliza o formulário */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+form label, form input, form textarea {
+    margin-bottom: 15px;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+#movieList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#movieList li {
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#movieList ul {
+    display: flex; /* Usando flexbox para alinhar os filmes */
+    flex-wrap: wrap; /* Permite que os itens se movam para a próxima linha */
+    list-style-type: none;
+    padding: 0;
+    justify-content: center; /* Centraliza os filmes na página */
+}
+
+.movie-item {
+    display: flex; /* Alinha a imagem e os detalhes em linha */
+    margin: 15px; /* Espaçamento entre os filmes */
+    border: 1px solid #ccc; /* Borda ao redor de cada filme */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    background-color: #f9f9f9; /* Fundo claro */
+    width: 200px; /* Largura fixa para os itens */
+    transition: transform 0.2s; /* Efeito de transição */
+}
+
+.movie-item:hover {
+    transform: scale(1.05); /* Aumenta um pouco o tamanho ao passar o mouse */
+}
+
+.movie-poster {
+    max-width: 100%; /* Garante que a imagem não ultrapasse o limite do item */
+    border-radius: 5px; /* Bordas arredondadas para a imagem */
+    margin-right: 10px; /* Espaçamento entre a imagem e os detalhes */
+}
+
+.movie-details {
+    display: flex; /* Flexbox para os detalhes do filme */
+    flex-direction: column; /* Coloca os detalhes em coluna */
+    justify-content: center; /* Centraliza verticalmente os detalhes */
+}
+
