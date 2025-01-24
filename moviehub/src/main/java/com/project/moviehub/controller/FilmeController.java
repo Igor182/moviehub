@@ -24,6 +24,7 @@ public class FilmeController {
         return "index"; // Retorna o nome da página HTML (index.html)
     }
 
+
     @GetMapping("/adicionar") // Mapeamento para a rota de adicionar
     public String mostrarFormularioAdicionarFilme(Model model) {
         model.addAttribute("filme", new Filme()); // Adiciona um novo objeto Filme ao modelo
@@ -47,11 +48,13 @@ public class FilmeController {
         }
     }
 
-    // Deletar um filme por ID
-    @DeleteMapping("/{id}")
-    public String deletarFilme(@PathVariable Long id) {
-        filmeService.deletar(id); // Chama o serviço para deletar o filme
-        return "redirect:/filmes/"; // Redireciona para a página inicial após deletar
+    // Método para remover filme
+    @PostMapping("/filmes/remover/{id}")
+    public String removerFilme(@PathVariable Long id) {
+        filmeService.removeFilme(id); // Lógica de remoção
+        return "redirect:/filmes"; // Redireciona para a lista de filmes
     }
+
+
 
 }

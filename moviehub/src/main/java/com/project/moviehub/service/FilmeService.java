@@ -25,7 +25,8 @@ public class FilmeService {
         return filmeRepository.save(filme);
     }
 
-    public void deletar(Long id) {
-        filmeRepository.deleteById(id);
+    public void removeFilme(Long id) {
+        filmeRepository.deleteById(id); // Se você estiver usando JPA
     }
+
 }

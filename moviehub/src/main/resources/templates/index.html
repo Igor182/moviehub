@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,29 +14,39 @@
         <button onclick="searchMovie()">Buscar</button>
     </div>
 
-    <div class="add-movie-container">
-        <a href="/filmes/adicionar"><button>Adicionar Filme</button></a>
+    <div class="container-2">
+        <div class="add-movie-container">
+            <a href="/filmes/adicionar">
+                <button>Adicionar Filme</button>
+            </a>
+        </div>
     </div>
-
-
 </header>
 
 <section id="movieList">
     <h2>Filmes</h2>
     <ul>
         <li th:each="filme : ${filmes}" class="movie-item">
-            <img th:src="${filme.imagemUrl}" alt="Poster do Filme" class="movie-poster">
+            <div class="movie-poster-container">
+                <img th:src="${filme.imagemUrl}" alt="Poster do Filme" class="movie-poster">
+            </div>
             <div class="movie-details">
                 <h3 th:text="${filme.titulo}"></h3>
-                <p>Diretor: <span th:text="${filme.diretor}"></span></p>
-                <p>Gênero: <span th:text="${filme.genero}"></span></p>
-                <p>Descrição: <span th:text="${filme.descricao}"></span></p>
-                <p>Lançamento: <span th:text="${filme.dataLancamento}"></span></p>
+                <p><strong>Diretor:</strong> <span th:text="${filme.diretor}"></span></p>
+                <p><strong>Gênero:</strong> <span th:text="${filme.genero}"></span></p>
+                <p><strong>Descrição:</strong> <span th:text="${filme.descricao}"></span></p>
+                <p><strong>Lançamento:</strong> <span th:text="${filme.dataLancamento}"></span></p>
+            </div>
+
+            <!-- Botão de remover -->
+            <div class="remove-movie-container">
+                <form th:action="@{/filmes/remover/{id}(id=${filme.id})}" method="post">
+                    <button type="submit" class="remove-button">Remover</button>
+                </form>
             </div>
         </li>
     </ul>
 </section>
-
 
 <footer>
     <p>© 2024 MovieHub. Todos os direitos reservados.</p>
@@ -48,5 +58,6 @@
         window.location.href = '/api/filmes/' + movieId; // Redireciona para o endpoint de busca
     }
 </script>
+
 </body>
 </html>
