@@ -3,58 +3,52 @@ package com.project.moviehub.controller;
 import com.project.moviehub.model.Filme;
 import com.project.moviehub.service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller; // Importando Controller
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller // Indica a classe como controlador
+@Controller
 @RequestMapping("/filmes")
 public class FilmeController {
 
-    @Autowired //Injeção de dependencias
+    @Autowired
     private FilmeService filmeService;
 
-    @GetMapping("/") // Mapeia a rota raiz "/"
+    @GetMapping("/")
     public String listarFilmes(Model model) {
-        List<Filme> filmes = filmeService.listarTodos(); // Busca todos os filmes no serviço
-        model.addAttribute("filmes", filmes); // Adiciona os filmes ao modelo para o HTML
-        return "index"; // Retorna o nome da página HTML (index.html)
+        List<Filme> filmes = filmeService.listarTodos();
+        model.addAttribute("filmes", filmes);
+        return "index"; // Página principal que lista os filmes
     }
 
-
-    @GetMapping("/adicionar") // Mapeamento para a rota de adicionar
+    @GetMapping("/adicionar")
     public String mostrarFormularioAdicionarFilme(Model model) {
-        model.addAttribute("filme", new Filme()); // Adiciona um novo objeto Filme ao modelo
-        return "add_movie"; // Retorna o nome do arquivo HTML sem a extensão
+        model.addAttribute("filme", new Filme());
+        return "add_movie"; // Página para adicionar novo filme
     }
 
     @PostMapping("/")
     public String adicionarFilme(@ModelAttribute Filme filme) {
-        filmeService.salvar(filme); // Salva o filme usando o serviço
-        return "redirect:/filmes/";
+        filmeService.salvar(filme); // Salva o filme
+        return "redirect:/filmes/"; // Redireciona para a lista de filmes
     }
 
     @GetMapping("/{id}")
     public String buscarFilmePorId(@PathVariable Long id, Model model) {
         Filme filme = filmeService.buscarPorId(id);
         if (filme != null) {
-            model.addAttribute("filme", filme); // Adiciona o filme ao modelo
+            model.addAttribute("filme", filme);
             return "detalhes_filme"; // Página de detalhes do filme
         } else {
             return "filme_nao_encontrado"; // Página caso o filme não exista
         }
     }
 
-    // Método para remover filme
-    @PostMapping("/filmes/remover/{id}")
+    @DeleteMapping("/remover/{id}")  // Ajustei o caminho para /remover/{id}
     public String removerFilme(@PathVariable Long id) {
-        filmeService.removeFilme(id); // Lógica de remoção
-        return "redirect:/filmes"; // Redireciona para a lista de filmes
+        filmeService.removeFilme(id); // Chama o serviço para remover o filme
+        return "redirect:/filmes/"; // Após a remoção, redireciona para a lista de filmes
     }
-
-
-
 }

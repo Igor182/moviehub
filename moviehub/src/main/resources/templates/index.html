@@ -40,9 +40,7 @@
 
             <!-- Botão de remover -->
             <div class="remove-movie-container">
-                <form th:action="@{/filmes/remover/{id}(id=${filme.id})}" method="post">
-                    <button type="submit" class="remove-button">Remover</button>
-                </form>
+                <button id="button_remove" th:data-id="${filme.id}" onclick="confirmDelete(this)">Remover</button>
             </div>
         </li>
     </ul>
@@ -53,9 +51,27 @@
 </footer>
 
 <script>
+    // Função para buscar filmes
     function searchMovie() {
         const movieId = document.getElementById('searchId').value;
         window.location.href = '/api/filmes/' + movieId; // Redireciona para o endpoint de busca
+    }
+
+    // Função para confirmar e excluir um filme
+    function confirmDelete(button) {
+        const id = button.getAttribute('data-id');  // Obtém o id armazenado no botão
+        console.log(id);  // Verifique o valor do id aqui no console
+
+        if (confirm("Tem certeza que deseja remover este filme?")) {
+            fetch(`/filmes/remover/${id}`, { method: 'DELETE' })
+                .then(() => {
+                    alert('Filme removido com sucesso!');
+                    location.reload(); // Recarrega a página após a remoção
+                })
+                .catch(err => {
+                    alert('Erro ao remover o filme: ' + err);
+                });
+        }
     }
 </script>
 

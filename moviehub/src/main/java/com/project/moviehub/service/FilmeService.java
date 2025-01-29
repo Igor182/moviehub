@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FilmeService {
@@ -18,15 +19,15 @@ public class FilmeService {
     }
 
     public Filme buscarPorId(Long id) {
-        return filmeRepository.findById(id).orElse(null);
+        Optional<Filme> filmeOpt = filmeRepository.findById(id);
+        return filmeOpt.orElse(null); // Retorna o filme se encontrado, ou null
     }
 
     public Filme salvar(Filme filme) {
-        return filmeRepository.save(filme);
+        return filmeRepository.save(filme); // Salva ou atualiza o filme
     }
 
     public void removeFilme(Long id) {
-        filmeRepository.deleteById(id); // Se você estiver usando JPA
+        filmeRepository.deleteById(id); // Remove o filme com o ID especificado
     }
-
 }
