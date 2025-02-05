@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://images.sftcdn.net/images/t_app-icon-m/p/eca52532-9b2e-11e6-9b73-00163ec9f5fa/494976430/movie-hub-logo.png" type="image/png">
     <title>MovieHub</title>
     <link rel="stylesheet" href="/css.css">
 </head>
@@ -11,7 +12,7 @@
     <h1>MovieHub</h1>
     <div class="search-container">
         <input type="text" id="searchId" placeholder="Buscar Filme">
-        <button onclick="searchMovie()">Buscar</button>
+        <button onclick="redirectToMovies()">Buscar</button>
     </div>
 
     <div class="container-2">
@@ -38,6 +39,14 @@
                 <p><strong>Lançamento:</strong> <span th:text="${filme.dataLancamento}"></span></p>
             </div>
 
+            <!-- Botão de editar -->
+            <div class="edit-movie-container">
+                <form th:action="@{/filmes/editar/{id}(id=${filme.id})}" method="get">
+                    <button type="submit" id="button_edit">Editar</button>
+                </form>
+            </div>
+
+
             <!-- Botão de remover -->
             <div class="remove-movie-container">
                 <button id="button_remove" th:data-id="${filme.id}" onclick="confirmDelete(this)">Remover</button>
@@ -52,9 +61,8 @@
 
 <script>
     // Função para buscar filmes
-    function searchMovie() {
-        const movieId = document.getElementById('searchId').value;
-        window.location.href = '/api/filmes/' + movieId; // Redireciona para o endpoint de busca
+    function redirectToMovies() {
+        window.location.href = "/filmes/";
     }
 
     // Função para confirmar e excluir um filme

@@ -46,9 +46,28 @@ public class FilmeController {
         }
     }
 
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEditarFilme(@PathVariable Long id, Model model) {
+        Filme filme = filmeService.buscarPorId(id);
+        if (filme != null) {
+            model.addAttribute("filme", filme);
+            return "edit_movie"; // Página de edição
+        } else {
+            return "filme_nao_encontrado"; // Caso o filme não seja encontrado
+        }
+    }
+
+    @PostMapping("/editar/{id}")
+    public String editarFilme(@PathVariable Long id, @ModelAttribute Filme filmeAtualizado) {
+        filmeService.editarFilme(id, filmeAtualizado);  // Atualiza o filme no serviço
+        return "redirect:/filmes/";  // Redireciona após a edição para a lista de filmes
+    }
+
     @DeleteMapping("/remover/{id}")  // Ajustei o caminho para /remover/{id}
     public String removerFilme(@PathVariable Long id) {
         filmeService.removeFilme(id); // Chama o serviço para remover o filme
         return "redirect:/filmes/"; // Após a remoção, redireciona para a lista de filmes
     }
+
+
 }

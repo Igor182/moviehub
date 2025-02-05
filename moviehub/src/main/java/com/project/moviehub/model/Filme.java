@@ -20,7 +20,8 @@ public class Filme {
     @Column(nullable = false)
     private String diretor;
 
-    @Column(nullable = false)
+    @Lob // Define um campo de texto longo
+    @Column(nullable = false, columnDefinition = "TEXT") // Define explicitamente como TEXT
     private String descricao;
 
     @Column(nullable = false)

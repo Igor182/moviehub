@@ -1,28 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Filme</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css.css"> <!-- Link para o CSS -->
 </head>
 <body>
-<h1>Editar Filme</h1>
-<form th:action="@{/filmes/editar/{id}(id=${filme.id})}" method="post">
-    <input type="hidden" name="_method" value="PUT" />
-    <label>Título:</label>
-    <input type="text" name="titulo" th:value="${filme.titulo}" required />
-    <label>Gênero:</label>
-    <input type="text" name="genero" th:value="${filme.genero}" required />
-    <label>Diretor:</label>
-    <input type="text" name="diretor" th:value="${filme.diretor}" required />
-    <label>Descrição:</label>
-    <textarea name="descricao" required th:text="${filme.descricao}"></textarea>
-    <label>Data de Lançamento:</label>
-    <input type="date" name="dataLancamento" th:value="${filme.dataLancamento}" required />
-    <label>Imagem URL:</label>
-    <input type="url" name="imagemUrl" th:value="${filme.imagemUrl}" />
-    <button type="submit">Atualizar</button>
-</form>
-<a href="/filmes">Voltar</a>
+<header>
+    <h1 >MovieHub</h1>
+</header>
+<div class="edit-movie-container-box">
+    <h1 id="name_edit">Editar Filme</h1>
+    <form th:action="@{/filmes/editar/{id}(id=${filme.id})}" method="post">
+        <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" th:value="${filme.titulo}" required>
+        </div>
+        <div class="form-group">
+            <label for="genero">Gênero:</label>
+            <input type="text" id="genero" name="genero" th:value="${filme.genero}" required>
+        </div>
+        <div class="form-group">
+            <label for="diretor">Diretor:</label>
+            <input type="text" id="diretor" name="diretor" th:value="${filme.diretor}" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" th:text="${filme.descricao}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="dataLancamento">Data de Lançamento:</label>
+            <input type="text" id="dataLancamento" name="dataLancamento" th:value="${filme.dataLancamento}" required>
+        </div>
+        <div class="form-group">
+            <label for="imagemUrl">URL da Imagem:</label>
+            <input type="text" id="imagemUrl" name="imagemUrl" th:value="${filme.imagemUrl}" required>
+        </div>
+        <div class="form-buttons">
+            <button type="submit" class="save-button">Salvar</button>
+            <a href="/filmes/" class="cancel-button">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+<footer>
+    <p>© 2024 MovieHub. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>

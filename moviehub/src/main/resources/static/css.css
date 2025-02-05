@@ -100,9 +100,24 @@ form input, form textarea {
 }
 
 /* Ajuste específico para o botão do formulário */
-#button_remove {
+
+.edit-movie-container {
+    padding-bottom: 3rem;
+}
+
+#button_edit {
     padding: 10px 20px;
     background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Faz o botão ocupar a largura total do formulário */
+}
+
+#button_remove {
+    padding: 10px 20px;
+    background-color: #b30000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -184,6 +199,7 @@ footer {
 
 .movie-poster-container img {
     width: 100%;
+    height: 400px;
 }
 
 .movie-details {
@@ -191,6 +207,7 @@ footer {
     flex-direction: column; /* Coloca os detalhes em coluna */
     justify-content: flex-start; /* Alinha os detalhes no topo */
     margin-bottom: 10px; /* Espaço abaixo dos dados do filme */
+    padding-bottom: 1rem;
 }
 
 /* Ajuste específico para o botão de remover */
@@ -213,4 +230,38 @@ footer {
 
 #descricao {
     height: 250px;
+}
+
+.edit-movie-container-box {
+    width: 100%;
+    padding: 20px;
+}
+
+#name_edit {
+    text-align: center;
+}
+
+.form-buttons {
+    padding-top: 2rem;
+}
+
+.save-button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%; /* Faz o botão ocupar a largura total do formulário */
+}
+
+.cancel-button {
+    padding: 10px 20px;
+    background-color: #b30006;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%; /* Faz o botão ocupar a largura total do formulário */
+    text-decoration: none;
 }
