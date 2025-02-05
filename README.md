@@ -1,4 +1,8 @@
-Vídeo demonstrando a funcionalidade de adicionar e remover filmes, utilizando o java com o SpringBoot pra parte lógica, junto com JS pra algumas interatividades com a página.
+Fiz essa aplicação utilizando Java com Spring Boot e MySQL para armazenar os dados. Nela, desenvolvi um CRUD básico para gerenciar uma coleção de filmes, permitindo visualizar, adicionar, editar e remover filmes com facilidade.
 
-https://github.com/user-attachments/assets/f159eb50-9641-4539-8367-65ad1f48fc00
+
+
+
+
+https://github.com/user-attachments/assets/82f6fc04-3766-4d64-9721-1af6d2d9ecad
 
